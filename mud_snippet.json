@@ -1,0 +1,64 @@
+{
+    "ietf-mud:mud": {
+        "from-device-policy": {
+            "access-lists": {
+                "access-list": [
+                    {
+                        "name": "button-ping-v4from"
+                    }
+                ]
+            }
+        },
+        "to-device-policy": {
+            "access-lists": {
+                "access-list": [
+                    {
+                        "name": "button-ping-v4to"
+                    }
+                ]
+            }
+        }
+    },
+    "ietf-access-control-list:acls": {
+        "acl": [
+            {
+                "name": "button-ping-v4to",
+                "type": "ipv4-acl-type",
+                "aces": {
+                    "ace": [
+                        {
+                            "name": "facebook-to",
+                            "matches": {
+                                "ipv4": {
+                                    "ietf-acldns:src-dnsname": "facebook.com"
+                                }
+                            },
+                            "actions": {
+                                "forwarding": "accept"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "button-ping-v4from",
+                "type": "ipv4-acl-type",
+                "aces": {
+                    "ace": [
+                        {
+                            "name": "facebook-fr",
+                            "matches": {
+                                "ipv4": {
+                                    "ietf-acldns:dst-dnsname": "facebook.com"
+                                }
+                            },
+                            "actions": {
+                                "forwarding": "accept"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
